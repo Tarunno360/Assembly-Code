@@ -1,0 +1,140 @@
+﻿.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a dB 10
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+;task1 enter your code he
+mov ax,9
+mov bx,ax
+;task2
+mov bx,10
+mov cx,0
+mov cx,ax
+mov ax,bx
+mov bx,cx    
+;task3
+add ax,bx
+;task4
+sub ax,bx  
+sub bx,ax    ; register becomes FFFF so there is an error 
+;task5
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
+
+
+;Byte mul is 8*8 highest bit possible (16 bits)
+;Ekta value aL e thaktei hobe. MUL e only one register use hoy always AX ei save hobe always
+
+
+;Word mul e 32 bit hoy. Store it in Dx:Ax eivabe ashbe. D te kisu rakha jabena 
+
+
+
+
+;Div 16x8
+;5)25( 
+;Jeitake vag korbo oitake Ax e rakhbo (dividant 25) AL e div er answer ashe
+;Ah er moddhe ashe reminder
+
+
+;Word mul e 32x16
+;Dx e first 16bit Ax e last 16bit …….Ax e result & Dx e reminder
+
+
+;LEA  
+;Test
+
+
+
+
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a dB 10
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+;task1 enter your code he
+mov ax,22
+mov bx,76
+mul bx
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
+
+
+
+
+
+
+
+
+
+
+
+
+Template
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a dB 10
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
