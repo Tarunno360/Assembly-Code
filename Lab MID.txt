@@ -1,0 +1,497 @@
+﻿.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a dB 10
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
+
+
+—-----------------------task1—-----------------------------------
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+base db 22
+height db 6
+result dw ?
+.CODE
+MAIN PROC
+MOV AX,@DATA
+MOV DS,AX
+
+
+;iniitialize DS
+mov al,base
+mov bl,height
+mul bl ;basexheight in ax
+mov cl,2
+div cl ;1/2 ax ans
+mov result,ax
+ 
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
+
+
+
+
+—--------------------------task2—-------------------------
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+var db ?
+rem db ?
+result db ?
+rem2 db ?
+s1 db "result$"
+s2 db "remainder$"
+.CODE
+MAIN PROC
+
+
+MOV AX,@DATA
+MOV DS,AX
+;code
+mov ah,1
+int 21h
+mov bh,ah ;X
+
+
+mov ah,1
+int 21h
+mov bl,ah ;Y
+
+
+mov ah,1
+int 21h
+mov ch,ah ;Z
+
+
+sub bh,30h ;9
+sub bl,30h ;8
+sub ch,30h ;6
+
+
+;Caculation part
+mov al,bh
+mul ch ;X*Z
+mov dx,ax
+
+
+mov cl,6
+mov al,bl
+mul cl   ;y*6
+
+
+add dx,ax ;(x*z)+y*6  dx e ans
+
+
+mov var,3
+mov ah,0
+mov al,bh
+div var    ;x//3
+mov rem,ah
+
+
+mov al,bl
+mul ch      ; yxz
+
+
+add rem,al   ;divisor
+
+
+mov ax,dx
+div rem     ; whole devide
+
+
+mov result,al
+mov rem, ah 
+
+
+add result,30
+add rem,30
+
+
+lea dx,s1
+mov ah,9
+int 21h
+
+
+mov dl,result
+mov ah,2
+int 21h
+
+
+mov ah,2
+mov dl,0dh
+int 21h             ;next line jawar jonno
+mov dl,0ah
+int 21h
+
+
+lea dx,s2
+mov ah,9
+int 21h
+
+
+mov dl,rem
+mov ah,2
+int 21h
+
+
+
+
+—------------------------------Test3—----------------------------------
+
+
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a dB ?
+b db ?
+c db ?
+d db ?
+w db ?
+x db ?
+y db ?
+z db ?
+s1 db "valid rectangle$"
+s2 db "Invalid rectangle$"
+
+
+
+
+
+
+
+
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+
+
+;code
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov a,al 
+
+
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov b,al
+
+
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov c,al
+
+
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov d,al
+
+
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov w,al
+
+
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov x,al
+
+
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov y,al  
+
+
+mov ah,1
+int 21h             ; input neyar jonno and store it in al 
+mov z,al  
+
+
+
+
+cmp w,90
+je equal1
+jmp exit
+equal1:
+cmp x,90
+je equal2
+jmp exit
+
+
+
+
+equal2:
+cmp y,90
+je equal3
+jmp exit
+
+
+equal3:
+cmp z,90
+je calcu
+jmp exit
+
+
+calcu:
+
+
+
+
+
+
+
+
+
+
+exit:
+lea dx,s2
+mov ah,9 ;to show the string 
+int 21h 
+
+
+ 
+
+
+ 
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
+
+
+
+
+
+
+—---------------------------Test4—-------------------------------------
+
+
+
+
+
+
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a db 100 
+b db 10 
+c db ? 
+e dw ?
+month db ?
+depo db ?
+rem1 db ? 
+rem2 db ?
+output dw ?  
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+
+
+mov ah,1
+int 21h
+mov bh, al
+mov ah,1     
+int 21h
+mov bl, al
+mov ah,1
+int 21h   
+mov ch, al    
+
+
+  
+sub bh, 30h
+sub bl, 30h  
+sub ch, 30h      
+
+
+mov al, bh   
+mov cl, a  
+mul cl
+        
+        
+mov c,ax 
+
+
+
+
+mov al,bl    
+mov cl,b
+mul cl
+
+
+mov d,ax   
+
+
+mov dh,0
+mov dl,ch   
+
+
+mov e,dx      
+
+
+
+
+mov ax,c  
+mov bx,d  
+add ax,bx 
+mov bx,e   
+add ax,bx 
+
+
+mov depo,ax     ;depo value
+
+
+mov ah,1
+int 21h
+mov bh, al 
+
+
+mov ah,1     
+int 21h
+mov bl, al
+
+
+sub bh, 30h
+sub bl, 30h 
+  
+mov al, bh   
+mov cl, b  
+mul cl  
+mov c,ax  
+
+
+mov dh,0
+mov dl,ch   
+
+
+mov month,dx       ;month value
+
+
+
+
+; calculation part
+
+
+mov ax,depo
+mov cl,100
+div cl
+mov rem1,ah
+
+
+mov ax,mo
+mov cl,12
+div cl
+mov rem2,ah
+
+
+mov rem2,al
+mul rem1
+
+
+mov cx,18
+
+
+mul cx  ; whole value
+
+
+add depo,cx 
+
+
+mov output,depo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+ 
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN

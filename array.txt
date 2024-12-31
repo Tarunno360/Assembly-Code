@@ -1,0 +1,156 @@
+﻿A db 9,2,13,90 array-list
+
+
+
+
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a db 9,6,2,1,3
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+;codeeee
+
+
+mov bl,5
+lea si,a
+
+
+condition:
+cmp bl,0
+jge print
+jl exit
+print:
+mov ah,2
+mov dl,[si]
+int 21h
+inc si
+jmp condition
+exit:
+
+
+mov ah,2
+
+
+ 
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
+
+
+
+
+
+
+Array list implementation
+
+
+
+.MODEL SMALL
+ 
+.STACK 100H
+
+
+.DATA
+a db 9,6,2,1,3
+.CODE
+MAIN PROC
+
+
+;iniitialize DS
+
+
+MOV AX,@DATA
+MOV DS,AX
+;codeeee
+mov si,0
+condition:
+cmp bl,0
+jg print
+jl exit
+print:
+mov ah,2
+mov dl,a[si];+30h in next line
+
+
+
+
+ 
+
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+
+MAIN ENDP
+    END MAIN
+
+
+Create array
+A db 5dup(?)
+A db 1,2,34,4
+
+
+
+
+Array theke sob value print
+
+
+arr db 1,2,3,4,5
+
+
+Mov cx,5
+Mov ah,2
+
+
+Lea si,arr    1 jeikhane ase oitay location ase
+
+
+Array:
+Mov dl,(si)
+Add ,dl,30h
+Int 21h
+
+
+Inc si
+
+
+Loop array
+
+
+
+
+Array er exact kono value jodi access korbo
+
+
+Mov cx,5
+Mov,ah,2
+Mov si,0  index number 0
+
+
+Array:
+Mov dll,a[si]
+Add dl,30h
+
+
+Int 21h
+Inc si
